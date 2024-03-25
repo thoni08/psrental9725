@@ -8,10 +8,16 @@ from os.path import join, dirname
 
 load_dotenv(join(dirname(__file__), '.env'))
 
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+class Bot(commands.Bot):
+    def __init__(self):
+        super().__init__(command_prefix='!', intents=discord.Intents.all(), application_id=os.getenv('APP_ID'))
+    
+    async def setup_hook(self):
+        # self.tree.copy_global_to(guild=discord.Object(id=os.getenv('GUILD_ID')))
+        await self.tree.sync(guild=discord.Object(id=os.getenv('GUILD_ID')))
 
-@bot.event
-async def on_ready():
-    print(f"Bot ready. Currently using {discord.__version__}")
+    async def on_ready(self):
+        await self.wait_until_ready()
+        print(f"Bot ready. Currently using {discord.__version__}")
 
-bot.run(os.getenv('TOKEN'))
+Bot().run(os.getenv('TOKEN'))
