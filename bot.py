@@ -13,6 +13,16 @@ class Bot(commands.Bot):
         super().__init__(command_prefix='!', intents=discord.Intents.all(), application_id=os.getenv('APP_ID'))
     
     async def setup_hook(self):
+        print("Importing commands...")
+        for filename in os.listdir('./commands'):
+            if filename.endswith('.py'):
+                await self.load_extension(f'commands.{filename[:-3]}')
+
+        print("Importing events...")
+        for filename in os.listdir('./events'):
+            if filename.endswith('.py'):
+                await self.load_extension(f'events.{filename[:-3]}')
+        
         # self.tree.copy_global_to(guild=discord.Object(id=os.getenv('GUILD_ID')))
         await self.tree.sync(guild=discord.Object(id=os.getenv('GUILD_ID')))
 
