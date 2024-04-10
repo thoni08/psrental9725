@@ -5,7 +5,7 @@ main source of power
 ### TODO
 
 - Guidebook
-- Minecraft Integration
+- Minecraft Integration (only start server exaroton for now)
 - Moderation
 - minigames(?)
 
@@ -16,3 +16,5 @@ To run this project, you will need to add the following environment variables to
 `TOKEN`
 `GUILD_ID`
 `APP_ID`
+`MCTOKEN`
+`MCSERVER_ID`
