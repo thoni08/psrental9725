@@ -23,7 +23,7 @@ class Bot(commands.Bot):
             if filename.endswith('.py'):
                 await self.load_extension(f'events.{filename[:-3]}')
         
-        # self.tree.copy_global_to(guild=discord.Object(id=os.getenv('GUILD_ID')))
+        self.tree.copy_global_to(guild=discord.Object(id=os.getenv('GUILD_ID')))
         await self.tree.sync(guild=discord.Object(id=os.getenv('GUILD_ID')))
 
     async def on_ready(self):
