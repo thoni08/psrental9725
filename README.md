@@ -14,3 +14,5 @@ main source of power
 To run this project, you will need to add the following environment variables to your .env file
 
 `TOKEN`
+`GUILD_ID`
+`APP_ID`
