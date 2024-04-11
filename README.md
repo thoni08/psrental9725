@@ -17,4 +17,5 @@ To run this project, you will need to add the following environment variables to
 `GUILD_ID`
 `APP_ID`
 `MCTOKEN`
-`MCSERVER_ID`
+`MC_SERVER_ID`
+`MC_UPDATES_ID`
