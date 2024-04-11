@@ -18,7 +18,7 @@ class McServer(commands.Cog):
 
     @discord.app_commands.command(name="start", description="Start Minecraft Exaroton server.")
     async def start(self, interaction: discord.Interaction) -> None:
-        exaroton.start(os.getenv('MCSERVER_ID'))
+        exaroton.start(os.getenv('MC_SERVER_ID'))
         await interaction.response.send_message("Server starting.")
 
 async def setup(bot):
