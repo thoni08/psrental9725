@@ -1,12 +1,11 @@
 import discord
 import os
+import subprocess
 from discord.ext import commands
 from dotenv import load_dotenv
-from exaroton import Exaroton
-from os.path import join, dirname
+from os.path import join, dirname, basename
 
 load_dotenv(join(dirname(__file__), '.env'))
-exaroton = Exaroton(os.getenv('MCTOKEN'))
 
 class McServer(commands.Cog):
     def __init__(self, bot):
@@ -14,11 +13,12 @@ class McServer(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"{os.path.basename(__file__)} ready.")
+        print(f"{basename(__file__)} ready.")
 
-    @discord.app_commands.command(name="start", description="Start Minecraft Exaroton server.")
+    @discord.app_commands.command(name="start", description="Start Minecraft server.")
     async def start(self, interaction: discord.Interaction) -> None:
-        exaroton.start(os.getenv('MC_SERVER_ID'))
+        p1 = subprocess.Popen("start_server.bat", creationflags=subprocess.CREATE_NEW_CONSOLE)
+        p2 = subprocess.Popen("start_playit.bat", creationflags=subprocess.CREATE_NEW_CONSOLE)
         await interaction.response.send_message("Server starting.")
 
 async def setup(bot):
