@@ -15,13 +15,21 @@ class Bot(commands.Bot):
     async def setup_hook(self):
         print("Importing commands...")
         for filename in os.listdir('./commands'):
-            if filename.endswith('.py'):
+            if filename.endswith('.py') and not filename.startswith('_'):
                 await self.load_extension(f'commands.{filename[:-3]}')
+
+        for filename in os.listdir('./commands/minecraft'):
+            if filename.endswith('.py') and not filename.startswith('_'):
+                await self.load_extension(f'commands.minecraft.{filename[:-3]}')
 
         print("Importing events...")
         for filename in os.listdir('./events'):
-            if filename.endswith('.py'):
+            if filename.endswith('.py') and not filename.startswith('_'):
                 await self.load_extension(f'events.{filename[:-3]}')
+
+        for filename in os.listdir('./events/minecraft'):
+            if filename.endswith('.py') and not filename.startswith('_'):
+                await self.load_extension(f'events.minecraft.{filename[:-3]}')
         
         self.tree.copy_global_to(guild=discord.Object(id=os.getenv('GUILD_ID')))
         await self.tree.sync(guild=discord.Object(id=os.getenv('GUILD_ID')))
