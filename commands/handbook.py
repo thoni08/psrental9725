@@ -1,7 +1,6 @@
 import discord
-import os
-from discord import app_commands
 from discord.ext import commands
+from os.path import basename
 
 class Handbook(commands.Cog):
     def __init__(self, bot):
@@ -9,11 +8,12 @@ class Handbook(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"{os.path.basename(__file__)} ready.")
+        print(f"{basename(__file__)} ready.")
 
     @discord.app_commands.command(name="help")
     async def help(self, interaction: discord.Interaction) -> None:
-        await interaction.response.send_message("help")
+        embed=discord.Embed()
+        await interaction.response.send_message(embed=embed)
 
 async def setup(bot):
     await bot.add_cog(Handbook(bot))

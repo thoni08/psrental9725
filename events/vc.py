@@ -1,8 +1,7 @@
-import discord
-import os
-from datetime import datetime, timedelta
+from datetime import timedelta
 from discord.ext import commands
-from discord.utils import format_dt, utcnow
+from discord.utils import utcnow
+from os.path import basename
 
 class VC(commands.Cog):
     def __init__(self, bot):
@@ -10,7 +9,7 @@ class VC(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"{os.path.basename(__file__)} ready.")
+        print(f"{basename(__file__)} ready.")
 
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
