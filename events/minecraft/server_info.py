@@ -44,8 +44,6 @@ class Button(discord.ui.View):
     async def start_server(self, interaction: discord.Interaction, button: discord.ui.Button):
         p1 = subprocess.Popen("start_server.bat", creationflags=subprocess.CREATE_NEW_CONSOLE)
         p2 = subprocess.Popen("start_playit.bat", creationflags=subprocess.CREATE_NEW_CONSOLE)
-        global started
-        started = True
         await interaction.response.send_message("Server starting.", ephemeral=True)
         print("start server called")
         self.start_server.disabled = True
